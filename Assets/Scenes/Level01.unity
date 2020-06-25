@@ -847,6 +847,7 @@ GameObject:
   - component: {fileID: 378348762}
   - component: {fileID: 378348761}
   - component: {fileID: 378348763}
+  - component: {fileID: 378348764}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -928,6 +929,19 @@ MonoBehaviour:
   collectibleLayer:
     serializedVersion: 2
     m_Bits: 4096
+--- !u!114 &378348764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378348759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cc219585052f44f948577c442426be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothness: 0.1
 --- !u!1 &397024634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1911,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3071624455369947756, guid: 36f52348af0c04844b0cf6cbbe844286,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7f6b076dde9a35e40849ad432dc4c280, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36f52348af0c04844b0cf6cbbe844286, type: 3}
 --- !u!4 &1034789491 stripped
