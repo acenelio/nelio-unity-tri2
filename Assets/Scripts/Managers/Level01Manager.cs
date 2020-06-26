@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NavGame.Managers;
+using NavGame.Core;
 
 public class Level01Manager : LevelManager
 {
@@ -12,9 +13,14 @@ public class Level01Manager : LevelManager
     public float waitTimeFirstWave = 2f;
     public float waitTimeBetweenWaves = 4f;
 
+    int totalCreep;
+
     protected override void Start()
     {
         base.Start();
+
+        totalCreep = badWaves * monstersPerWave;
+
         if (onWaveUpdate != null)
         {
             onWaveUpdate(badWaves, 0);
@@ -40,7 +46,9 @@ public class Level01Manager : LevelManager
                 for (int k = 0; k < monstersPerWave; k++)
                 {
                     Vector3 offset = new Vector3(Random.Range(-0.1f, 0.1f), 0f, Random.Range(-0.1f, 0.1f));
-                    Instantiate(badPrefab, badSpawn[j].position + offset, Quaternion.identity);
+                    GameObject obj = Instantiate(badPrefab, badSpawn[j].position + offset, Quaternion.identity) as GameObject;
+                    DamageableGameObject damageable = obj.GetComponent<DamageableGameObject>();
+                    damageable.onDied += OnCreepDied;
                 }
             }
             if (onWaveUpdate != null)
@@ -65,6 +73,16 @@ public class Level01Manager : LevelManager
         if (onWaveCountdown != null)
         {
             onWaveCountdown(0f);
+        }
+    }
+
+    void OnCreepDied()
+    {
+        totalCreep--;
+
+        if (totalCreep == 0)
+        {
+            EmitOnVictory();
         }
     }
 }

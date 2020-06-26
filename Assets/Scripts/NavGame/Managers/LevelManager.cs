@@ -47,12 +47,13 @@ namespace NavGame.Managers
 
         void OnEnable()
         {
-            nexus.onDied += OnDefeat;
+            nexus.onDied += EmitOnDefeat;
         }
 
         protected virtual void Start()
         {
             StartCoroutine(SpawnBad());
+            AddResource(12);
         }
 
         public virtual void AddResource(int amount)
@@ -153,7 +154,7 @@ namespace NavGame.Managers
             }
         }
 
-        void OnDefeat()
+        protected void EmitOnDefeat()
         {
             if (onDefeat != null)
             {
@@ -161,7 +162,7 @@ namespace NavGame.Managers
             }
         }
 
-        void OnVictory()
+        protected void EmitOnVictory()
         {
             if (onVictory != null)
             {
