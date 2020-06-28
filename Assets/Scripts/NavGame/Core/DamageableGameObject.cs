@@ -14,6 +14,8 @@ namespace NavGame.Core
         public OnHealthChangedEvent onHealthChanged;
         public OnDiedEvent onDied;
 
+        bool isDead = false;
+
         protected virtual void Awake()
         {
             currentHealth = defenseStats.maxHealth;
@@ -48,10 +50,14 @@ namespace NavGame.Core
 
         public virtual void Die()
         {
-            Destroy(gameObject);
-            if (onDied != null)
+            if (!isDead)
             {
-                onDied();
+                isDead = true;
+                Destroy(gameObject);
+                if (onDied != null)
+                {
+                    onDied();
+                }
             }
         }
     }
